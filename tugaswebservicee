@@ -1,0 +1,74 @@
+XML DTD
+Sebuah Document Type Definition (DTD) mendefinisikan blok bangunan hukum dari dokumen XML. Ia mendefinisikan struktur dokumen dengan daftar elemen hukum dan atribut.
+Sebuah DTD dapat dideklarasikan inline dalam dokumen XML, atau sebagai referensi eksternal.
+Jika DTD dideklarasikan di dalam file XML, itu harus dibungkus dalam sebuah definisi DOCTYPE dengan sintaks berikut:
+<!DOCTYPE root-element [element-declarations]>
+
+Contoh dokumen XML dengan DTD internal:
+<?xml version="1.0"?>
+<!DOCTYPE note [
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+]>
+<note>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend</body>
+</note> 
+
+DTD di atas ditafsirkan seperti ini:
+!DOCTYPE note mendefinisikan bahwa elemen root dari dokumen ini adalah catatan
+!ELEMEN note  mendefinisikan bahwa elemen catatan berisi empat unsur: "ke, dari, judul, tubuh"
+!ELEMEN to mendefinisikan untuk elemen untuk menjadi tipe "# PCDATA"
+!ELEMEN from mendefinisikan dari unsur untuk menjadi tipe "# PCDATA"
+!ELEMEN heading mendefinisikan elemen menuju dari tipe "# PCDATA"
+!ELEMEN body mendefinisikan elemen body untuk menjadi tipe "# PCDATA"
+Deklarasi DTD Eksternal
+Jika DTD ini dideklarasikan pada file eksternal, itu harus dibungkus dalam sebuah definisi DOCTYPE dengan sintaks berikut:
+<!DOCTYPE root-element SYSTEM "filename">
+Ini adalah dokumen XML yang sama seperti di atas, tetapi dengan DTD eksternal ( Buka itu , dan sumber tampilan pilih):
+<?xml version="1.0"?>
+<!DOCTYPE note SYSTEM "note.dtd">
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+Dan ini adalah file "note.dtd" yang berisi DTD:
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+
+Mengapa Menggunakan sebuah DTD?
+Dengan DTD, setiap file XML dapat membawa sebuah deskripsi format sendiri.
+Dengan DTD, kelompok independen orang dapat setuju untuk menggunakan DTD standar untuk bertukar data.
+Aplikasi Anda dapat menggunakan standar DTD untuk memverifikasi bahwa data yang Anda terima dari dunia luar valid.
+Anda juga dapat menggunakan DTD untuk memverifikasi data Anda sendiri.
+
+Blok Dokumen XML
+Dilihat dari sudut pandang DTD, semua dokumen XML (dan HTML dokumen) yang dibuat oleh blok bangunan sebagai berikut:
+Elemen
+Atribut
+Entitas
+PCDATA
+CDATA
+Elemen
+Elemen adalah blok bangunan utama dari kedua dan HTML dokumen XML.
+Contoh dari elemen HTML adalah "tubuh" dan "tabel". Contoh elemen XML bisa "catatan" dan "pesan". Elemen dapat berisi teks, elemen lain, atau kosong. Contoh elemen HTML kosong adalah "jam", "br" dan "img".
+Contoh:
+<body>some text</body>
+
+<message>some text</message>
+
+Atribut
+Atribut memberikan informasi tambahan tentang elemen .
+Atribut selalu ditempatkan di dalam tag pembukaan elemen. Atribut selalu datang dalam pasangan nama / nilai. Berikut "img" elemen memiliki informasi tambahan tentang file sumber:
+<img src="computer.gif" />
+Nama unsur ini "img". Nama atribut "src". Nilai atribut "computer.gif". Karena elemen itu sendiri kosong itu ditutup oleh sebuah "/".
